@@ -1,7 +1,12 @@
-const { signup, login, update, getAll } = require("./auth");
-const { getAllProducts, addProduct } = require("./products");
-const adminAuth = require("./adminAuth");
-const customerAuth = require("./customerAuth");
+const { signup, login, update, getAll } = require("./middlewares/users");
+const {
+  getAllProducts,
+  editProduct,
+  addProduct,
+  deleteProduct,
+} = require("./middlewares/products");
+const adminAuth = require("./middlewares/adminAuth");
+const customerAuth = require("./middlewares/customerAuth");
 const express = require("express");
 const router = express.Router();
 
@@ -20,5 +25,7 @@ router.route("/customer", customerAuth, (req, res) =>
 router
   .route("/products")
   .get(adminAuth, getAllProducts)
-  .post(adminAuth, addProduct);
+  .post(adminAuth, addProduct)
+  .put(adminAuth, editProduct)
+  .delete(adminAuth, deleteProduct);
 module.exports = router;
