@@ -16,7 +16,7 @@ export default function Login() {
     console.log(data)
     axios
       .post("http://localhost:3000/ecommerce/login", data, options)
-      .then((resp) => console.log(resp))
+      .then((resp) => console.log(resp))                           
       .catch((err) => console.log(err));
   };
   return (
